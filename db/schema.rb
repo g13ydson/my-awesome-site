@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_29_133811) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_01_161926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_29_133811) do
     t.jsonb "og_title_translations", default: {}
     t.jsonb "og_description_translations", default: {}
     t.jsonb "og_image_url_translations", default: {}
+    t.bigint "maglev_site_id", null: false
+    t.index ["maglev_site_id"], name: "index_maglev_pages_on_maglev_site_id"
   end
 
   create_table "maglev_sites", force: :cascade do |t|
@@ -92,4 +94,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_29_133811) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "maglev_pages", "maglev_sites"
 end
