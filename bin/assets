@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+
+current_theme = ARGV[0]
+
+puts "Static assets for: #{current_theme}"
+
+Dir.glob("./app/themes/#{current_theme}/images").each do |path|
+  puts "Copying #{path} to ./app/assets/builds/#{current_theme}"
+  FileUtils.copy_entry(path, "./app/assets/builds/#{current_theme}")
+end

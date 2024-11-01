@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
+    "@hotwired/turbo-rails": "^8.0.12",
+    "@popperjs/core": "^2.11.4",
+    "bootstrap": "5.3.3",
+    "bootstrap-icons": "^1.8.1",
+    "esbuild": "^0.24.0",
+    "jquery": "^3.5.1",
+    "jscroll": "^2.4.1",
+    "popper.js": "^1.16.1",
+    "sass": "^1.49.9",
+    "standard": "^17.0.0"
+  },
+  "scripts": {
+    "build": "for D in ./app/views/themes/*; do esbuild \"${D}\"/assets/javascript/*.* --bundle --outdir=app/assets/builds/\"${D##*/}\" && bin/assets \"${D##*/}\"; done",
+    "build:css": "for D in ./app/views/themes/*; do sass \"${D}\"/assets/stylesheets/application.scss ./app/assets/builds/\"${D##*/}\"/application.css --no-source-map --load-path=node_modules; done"
+  },
+  "devDependencies": {
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}
